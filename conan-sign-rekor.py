@@ -113,7 +113,6 @@ def sign(_, artifacts_folder: str, signature_folder: str):
 
     # Find dependencies
     rekor_cli_path = _find_rekor_cli()
-    # Verify "openssl" exists in PATH
     if not which("openssl"):
         raise Exception("Missing openssl binary")
 
@@ -187,6 +186,9 @@ def verify(_, artifacts_folder: str, signature_folder: str):
 
 def _test_main():
     """ Standalone tester function """
+    if not which("openssl"):
+        raise Exception("Missing openssl binary")
+
     # Create temp workdirs
     artifacts_folder = tempfile.mkdtemp()
     signature_folder = tempfile.mkdtemp()

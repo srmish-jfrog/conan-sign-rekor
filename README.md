@@ -14,9 +14,9 @@ If package signing is enabled (`CONANSIGN_REKOR_PRIVKEY` is set), then the `open
 ## Installation
 
 ```shell
-mkdir ~/.conan2/plugins
-cp conan-sign-rekor.py ~/.conan2/plugins
-conan config set plugins.conan-sign-rekor
+pip install -r requirements.txt
+mkdir ~/.conan2/extensions/plugins/sign
+cp conan-sign-rekor.py ~/.conan2/extensions/plugins/sign/sign.py
 ```
 
 
@@ -36,8 +36,29 @@ All environment variables are optional -
 * `CONANSIGN_REKOR_PUBKEY` - Path to an X.509 public key file for package verification. By default, uses the Conan root X.509 public key.
 * `CONANSIGN_REKOR_PRIVKEY` - Path to an X.509 private key file for package signing. By default, no signing will take place. If set, then `CONANSIGN_REKOR_PUBKEY` must also be set explicitly. When signing, verification is disabled.
 
-### Example
-`CONANSIGN_REKOR_CLI_AUTODOWNLOAD=1 conan foo bar`
+### Examples
+
+<u>Signing with user key</u>
+
+`CONANSIGN_REKOR_PRIVKEY=ec_private.pem CONANSIGN_REKOR_PUBKEY=ec_public.pem conan upload  mypackage/1.0`
+
+
+
+<u>Verification with user key</u>
+
+`CONANSIGN_REKOR_PUBKEY=ec_public.pem conan install .`
+
+
+
+<u>Verification with Conan root key (default)</u>
+
+`conan install .`
+
+
+
+<u>Disable verification</u>
+
+`CONANSIGN_REKOR_PRIVKEY=dummy conan install .`
 
 
 
