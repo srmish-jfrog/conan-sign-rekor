@@ -3,7 +3,7 @@
 
 ## Dependencies
 
-The `rekor-cli` executable must be available in the user's `PATH` .
+The [rekor-cli](https://github.com/sigstore/rekor/releases/) executable must be available in the user's `PATH` .
 
 `rekor-cli` can be automatically downloaded by the plugin, by specifying the environment variable `CONANSIGN_REKOR_CLI_AUTODOWNLOAD=1`. Alternatively, an arbitrary path to `rekor-cli` can be set by using `CONANSIGN_REKOR_CLI_PATH`.
 
